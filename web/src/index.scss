@@ -1,62 +1,78 @@
-$mainColor: #1a1a1a;
+$mainColor: #0f0f0f;
 $textColor: #ffffff;
-$mainFont: Roboto;
+$mainFont: 'Roboto', sans-serif;
 
-$secondaryColor: rgba(30, 30, 30, 0.9);
-$secondaryColorHighlight: #2a2a2a;
-$secondaryColorLight: rgba(0, 0, 0, 0.7);
-$secondaryColorDark: rgba(20, 20, 20, 0.95);
-$accentColor: #00ff88;
-$accentColorDark: #00cc6a;
+$secondaryColor: rgba(15, 15, 15, 0.95);
+$secondaryColorHighlight: #1a1a1a;
+$secondaryColorLight: rgba(0, 0, 0, 0.8);
+$secondaryColorDark: rgba(10, 10, 10, 0.98);
+$accentColor: #02a8db;
+$accentColorDark: #0288b3;
+$accentColorLight: #33b8db;
+
+// Tarkov-style colors
+$tarkovBg: #0a0a0a;
+$tarkovPanel: #1a1a1a;
+$tarkovBorder: #333333;
+$tarkovSlot: #2a2a2a;
+$tarkovSlotHover: #3a3a3a;
+$tarkovText: #e0e0e0;
+$tarkovTextDim: #a0a0a0;
+$tarkovRarity: #02a8db;
+$tarkovWarning: #ff6b35;
+$tarkovSuccess: #4ecdc4;
 
 $gridCols: 5;
-$gridRows: 5;
-$gridSize: 10.2vh;
-$gridGap: 2px;
-$containerSize: calc(#{$gridRows} * #{$gridSize + 0.22vh} + #{$gridRows} * #{$gridGap});
+$gridRows: 10;
+$gridSize: 9.5vh;
+$gridGap: 3px;
+$containerSize: calc(#{$gridRows} * #{$gridSize + 0.2vh} + #{$gridRows} * #{$gridGap});
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
     'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   height: 100vh;
-  background: none !important;
+  background: $tarkovBg !important;
   overflow: hidden !important;
   user-select: none;
+  color: $tarkovText;
 }
 
 #root {
   height: 100%;
+  background: linear-gradient(135deg, rgba(10, 10, 10, 0.95), rgba(20, 20, 20, 0.9));
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  font-family: 'Roboto Mono', source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.3);
-  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: $accentColor;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: $accentColorDark;
+  background: linear-gradient(180deg, $accentColor, $accentColorDark);
+  border-radius: 3px;
+  
+  &:hover {
+    background: linear-gradient(180deg, $accentColorLight, $accentColor);
+  }
 }
 
 p {
   margin: 0;
   padding: 0;
   font-family: $mainFont;
+  color: $tarkovText;
 }
 
 input[type='number']::-webkit-inner-spin-button,
@@ -69,43 +85,52 @@ input[type='number']::-webkit-outer-spin-button {
 .app-wrapper {
   height: 100%;
   width: 100%;
-  color: white;
+  color: $tarkovText;
+  background: radial-gradient(ellipse at center, rgba(2, 168, 219, 0.03) 0%, rgba(0, 0, 0, 0.8) 70%);
 }
 
+// Context Menu - Tarkov Style
 .context-menu-list {
-  min-width: 200px;
-  background-color: $mainColor;
-  color: $textColor;
+  min-width: 220px;
+  background: linear-gradient(145deg, rgba(26, 26, 26, 0.98), rgba(15, 15, 15, 0.98));
+  color: $tarkovText;
   padding: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
+  border: 1px solid rgba(2, 168, 219, 0.3);
+  border-radius: 4px;
   outline: none;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(10px);
+  box-shadow: 
+    0 0 20px rgba(2, 168, 219, 0.1),
+    0 8px 32px rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(20px);
+  font-size: 13px;
+  font-weight: 400;
 }
 
 .context-menu-item {
-  padding: 12px 16px;
-  border-radius: 6px;
+  padding: 10px 14px;
+  border-radius: 2px;
   background-color: transparent;
   outline: none;
   border: none;
-  color: $textColor;
+  color: $tarkovText;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 14px;
-  transition: all 0.2s ease;
+  font-size: 13px;
+  font-weight: 400;
+  transition: all 0.15s ease;
+  border-left: 2px solid transparent;
   
   &:active {
     transform: none;
   }
   
   &:hover {
-    background-color: rgba(0, 255, 136, 0.1);
-    color: $accentColor;
+    background: linear-gradient(90deg, rgba(2, 168, 219, 0.1), rgba(2, 168, 219, 0.05));
+    border-left-color: $accentColor;
+    color: $accentColorLight;
     cursor: pointer;
   }
 }
@@ -116,15 +141,18 @@ input[type='number']::-webkit-outer-spin-button {
 
 .tooltip-markdown > p {
   margin: 0;
+  font-size: 12px;
+  line-height: 1.4;
 }
 
 button:active {
   transform: translateY(1px);
 }
 
+// Drag Preview - Enhanced
 .item-drag-preview {
-  width: 7.7vh;
-  height: 7.7vh;
+  width: 8.5vh;
+  height: 8.5vh;
   z-index: 1000;
   position: fixed;
   pointer-events: none;
@@ -132,96 +160,116 @@ button:active {
   left: 0;
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 7vh;
+  background-size: 8vh;
   image-rendering: -webkit-optimize-contrast;
-  border-radius: 8px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+  border: 1px solid rgba(2, 168, 219, 0.4);
+  box-shadow: 
+    0 0 15px rgba(2, 168, 219, 0.3),
+    0 4px 20px rgba(0, 0, 0, 0.6);
+  filter: brightness(1.1);
 }
 
+// Main Inventory Layout
 .inventory-wrapper {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   height: 100%;
-  gap: 20px;
+  gap: 25px;
+  padding: 20px;
 }
 
+// Control Panel - Tarkov Style
 .inventory-control {
   display: flex;
 
   .inventory-control-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 12px;
     justify-content: center;
     align-items: center;
+    padding: 20px;
+    background: linear-gradient(145deg, rgba(26, 26, 26, 0.95), rgba(15, 15, 15, 0.95));
+    border: 1px solid rgba(2, 168, 219, 0.2);
+    border-radius: 6px;
+    box-shadow: 
+      inset 0 1px 0 rgba(255, 255, 255, 0.05),
+      0 4px 20px rgba(0, 0, 0, 0.5);
   }
 
   .inventory-control-input {
-    transition: all 0.3s ease;
-    padding: 16px 12px;
-    border-radius: 8px;
-    font-family: $mainFont;
-    font-size: 16px;
+    transition: all 0.2s ease;
+    padding: 12px 16px;
+    border-radius: 4px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 14px;
+    font-weight: 500;
     text-align: center;
     outline: none;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: $textColor;
-    background-color: $secondaryColor;
-    backdrop-filter: blur(10px);
+    border: 1px solid rgba(2, 168, 219, 0.3);
+    color: $tarkovText;
+    background: linear-gradient(145deg, rgba(42, 42, 42, 0.8), rgba(26, 26, 26, 0.8));
+    width: 120px;
     
-    &:focus-within {
-      background-color: $secondaryColorDark;
+    &:focus {
+      background: linear-gradient(145deg, rgba(42, 42, 42, 0.9), rgba(26, 26, 26, 0.9));
       border-color: $accentColor;
-      box-shadow: 0 0 0 2px rgba(0, 255, 136, 0.2);
+      box-shadow: 
+        0 0 0 2px rgba(2, 168, 219, 0.2),
+        inset 0 1px 3px rgba(0, 0, 0, 0.3);
     }
   }
 
   .inventory-control-button {
-    font-size: 14px;
-    color: $textColor;
-    background-color: $secondaryColor;
-    transition: all 0.3s ease;
-    padding: 14px 20px;
-    border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 12px;
+    font-weight: 500;
+    color: $tarkovText;
+    background: linear-gradient(145deg, rgba(42, 42, 42, 0.9), rgba(26, 26, 26, 0.9));
+    transition: all 0.2s ease;
+    padding: 12px 20px;
+    border-radius: 4px;
+    border: 1px solid rgba(2, 168, 219, 0.3);
     text-transform: uppercase;
     font-family: $mainFont;
-    width: 100%;
-    font-weight: 500;
-    backdrop-filter: blur(10px);
+    width: 120px;
+    letter-spacing: 0.5px;
     
     &:hover {
-      background-color: $secondaryColorDark;
+      background: linear-gradient(145deg, rgba(2, 168, 219, 0.2), rgba(2, 168, 219, 0.1));
       border-color: $accentColor;
-      color: $accentColor;
+      color: $accentColorLight;
       transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 4px 12px rgba(2, 168, 219, 0.2);
     }
   }
 }
 
+// Dialog Styles
 .useful-controls-dialog {
-  background-color: $mainColor;
+  background: linear-gradient(145deg, rgba(26, 26, 26, 0.98), rgba(15, 15, 15, 0.98));
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: $textColor;
-  width: 450px;
+  color: $tarkovText;
+  width: 480px;
   display: flex;
   flex-direction: column;
   padding: 24px;
-  border-radius: 12px;
+  border-radius: 6px;
   gap: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 16px 64px rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(2, 168, 219, 0.3);
+  box-shadow: 
+    0 0 30px rgba(2, 168, 219, 0.1),
+    0 16px 64px rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(20px);
 }
 
 .useful-controls-dialog-overlay {
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(4px);
 }
 
@@ -230,8 +278,11 @@ button:active {
   width: 100%;
   justify-content: space-between;
   align-items: center;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
+  color: $accentColorLight;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .useful-controls-dialog-close {
@@ -241,12 +292,13 @@ button:active {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 6px;
-  fill: $textColor;
+  border-radius: 4px;
+  fill: $tarkovText;
   transition: all 0.2s ease;
   
   &:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background: rgba(2, 168, 219, 0.1);
+    fill: $accentColorLight;
     cursor: pointer;
   }
 }
@@ -255,12 +307,28 @@ button:active {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  
+  p {
+    font-size: 13px;
+    line-height: 1.5;
+    
+    kbd {
+      background: rgba(2, 168, 219, 0.2);
+      border: 1px solid rgba(2, 168, 219, 0.4);
+      border-radius: 3px;
+      padding: 2px 6px;
+      font-family: 'Roboto Mono', monospace;
+      font-size: 11px;
+      color: $accentColorLight;
+    }
+  }
 }
 
 .divider {
   width: 100%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.5), transparent);
+  background: linear-gradient(90deg, transparent, rgba(2, 168, 219, 0.4), transparent);
+  margin: 8px 0;
 }
 
 .useful-controls-button {
@@ -268,49 +336,53 @@ button:active {
   bottom: 25px;
   right: 25px;
   transition: all 0.3s ease !important;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: white;
+  border: 1px solid rgba(2, 168, 219, 0.3);
+  color: $tarkovText;
   width: 56px;
   height: 56px;
   display: flex;
   justify-content: center;
   align-items: center;
-  fill: white;
-  border-radius: 12px !important;
-  background-color: $secondaryColor !important;
+  fill: $tarkovText;
+  border-radius: 6px !important;
+  background: linear-gradient(145deg, rgba(26, 26, 26, 0.95), rgba(15, 15, 15, 0.95)) !important;
   backdrop-filter: blur(10px);
   
   &:hover {
-    background-color: $secondaryColorDark !important;
+    background: linear-gradient(145deg, rgba(2, 168, 219, 0.2), rgba(2, 168, 219, 0.1)) !important;
     border-color: $accentColor;
+    fill: $accentColorLight;
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 8px 24px rgba(2, 168, 219, 0.2);
     cursor: pointer;
   }
 }
 
-// inventory grids
+// Inventory Grid - Tarkov Style
 .inventory-grid-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  background-color: $secondaryColor;
-  border-radius: 12px;
-  padding: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  gap: 16px;
+  background: linear-gradient(145deg, rgba(26, 26, 26, 0.95), rgba(15, 15, 15, 0.95));
+  border-radius: 6px;
+  padding: 20px;
+  border: 1px solid rgba(2, 168, 219, 0.2);
   backdrop-filter: blur(20px);
   position: relative;
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 8px 32px rgba(0, 0, 0, 0.4);
   
-  &::after {
+  &::before {
     content: '';
     position: absolute;
     top: 0;
     right: 0;
-    width: 4px;
+    width: 3px;
     height: 100%;
     background: linear-gradient(180deg, $accentColor, $accentColorDark);
-    border-top-right-radius: 12px;
-    border-bottom-right-radius: 12px;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
   }
 }
 
@@ -319,14 +391,24 @@ button:active {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(2, 168, 219, 0.2);
   
   p {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 600;
-    color: $textColor;
+    color: $tarkovText;
+    text-transform: uppercase;
+    letter-spacing: 1px;
     
     &:first-child {
-      color: $accentColor;
+      color: $accentColorLight;
+    }
+    
+    &:last-child {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 12px;
+      color: $tarkovTextDim;
     }
   }
 }
@@ -335,40 +417,56 @@ button:active {
   display: grid;
   height: $containerSize;
   grid-template-columns: repeat($gridCols, $gridSize);
-  grid-auto-rows: $gridSize + 0.22vh;
+  grid-auto-rows: $gridSize + 0.2vh;
   gap: $gridGap;
-  overflow-y: scroll;
-  padding-right: 4px;
+  overflow-y: auto;
+  padding-right: 8px;
+  
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
 }
 
-// inventory slots
+// Inventory Slots - Tarkov Style
 .inventory-slot {
-  background-color: rgba(40, 40, 40, 0.8);
+  background: linear-gradient(145deg, rgba(42, 42, 42, 0.8), rgba(26, 26, 26, 0.8));
   background-repeat: no-repeat;
   background-position: center;
-  border-radius: 8px;
+  border-radius: 4px;
   image-rendering: -webkit-optimize-contrast;
   position: relative;
-  background-size: 7vh;
-  color: $textColor;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: all 0.2s ease;
-  backdrop-filter: blur(10px);
+  background-size: 8.5vh;
+  color: $tarkovText;
+  border: 1px solid rgba(2, 168, 219, 0.2);
+  transition: all 0.15s ease;
+  backdrop-filter: blur(5px);
   
   &:hover {
-    border-color: rgba(0, 255, 136, 0.5);
-    box-shadow: 0 0 12px rgba(0, 255, 136, 0.2);
+    border-color: rgba(2, 168, 219, 0.5);
+    background: linear-gradient(145deg, rgba(58, 58, 58, 0.9), rgba(42, 42, 42, 0.9));
+    box-shadow: 
+      0 0 12px rgba(2, 168, 219, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    transform: translateY(-1px);
+  }
+  
+  &:active {
+    transform: translateY(0);
   }
 }
 
 .inventory-slot-label-box {
-  background: linear-gradient(135deg, rgba(26, 26, 26, 0.95), rgba(40, 40, 40, 0.95));
-  color: $textColor;
+  background: linear-gradient(135deg, rgba(15, 15, 15, 0.95), rgba(26, 26, 26, 0.95));
+  color: $tarkovText;
   text-align: center;
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  border-top: 1px solid rgba(2, 168, 219, 0.2);
   backdrop-filter: blur(10px);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 .inventory-slot-label-text {
@@ -379,23 +477,26 @@ button:active {
   padding: 4px 6px;
   font-weight: 500;
   font-family: $mainFont;
-  font-size: 11px;
+  font-size: 10px;
   letter-spacing: 0.5px;
+  color: $tarkovTextDim;
 }
 
 .inventory-slot-number {
   background: linear-gradient(135deg, $accentColor, $accentColorDark);
   color: #000;
-  height: 16px;
-  border-top-left-radius: 8px;
-  border-bottom-right-radius: 8px;
+  height: 18px;
+  min-width: 18px;
+  border-top-left-radius: 4px;
+  border-bottom-right-radius: 4px;
   padding: 2px 6px;
-  font-size: 11px;
-  font-family: $mainFont;
-  font-weight: 600;
+  font-size: 10px;
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .item-slot-wrapper {
@@ -405,8 +506,9 @@ button:active {
   height: 100%;
   
   p {
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 500;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
   }
 }
 
@@ -414,6 +516,7 @@ button:active {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
+  padding: 4px;
 }
 
 .item-hotslot-header-wrapper {
@@ -426,12 +529,18 @@ button:active {
   flex-direction: row;
   align-self: flex-end;
   padding: 4px;
-  gap: 4px;
+  gap: 6px;
   
   p {
-    font-size: 11px;
+    font-size: 10px;
+    font-family: 'Roboto Mono', monospace;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
     font-weight: 500;
+    color: $tarkovTextDim;
+    
+    &:last-child {
+      color: $accentColorLight;
+    }
   }
 }
 
@@ -440,12 +549,14 @@ button:active {
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
-  padding-right: 4px;
+  padding-right: 6px;
   
   p {
-    font-size: 13px;
+    font-size: 12px;
+    font-family: 'Roboto Mono', monospace;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
     font-weight: 600;
+    color: $tarkovSuccess;
   }
 }
 
@@ -453,33 +564,39 @@ button:active {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  padding-right: 4px;
+  padding-right: 6px;
   
   p {
-    font-size: 13px;
+    font-size: 12px;
+    font-family: 'Roboto Mono', monospace;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
     font-weight: 600;
+    color: $tarkovSuccess;
   }
 }
 
+// Tooltip - Tarkov Style
 .tooltip-wrapper {
   pointer-events: none;
   display: flex;
-  background: linear-gradient(135deg, rgba(26, 26, 26, 0.95), rgba(40, 40, 40, 0.95));
-  width: 220px;
-  padding: 12px;
+  background: linear-gradient(145deg, rgba(26, 26, 26, 0.98), rgba(15, 15, 15, 0.98));
+  width: 260px;
+  padding: 16px;
   flex-direction: column;
-  min-width: 220px;
-  color: $textColor;
+  min-width: 260px;
+  color: $tarkovText;
   font-family: $mainFont;
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+  border-radius: 6px;
+  border: 1px solid rgba(2, 168, 219, 0.3);
+  box-shadow: 
+    0 0 20px rgba(2, 168, 219, 0.1),
+    0 8px 32px rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(20px);
   
   p {
     font-size: 12px;
     font-weight: 400;
+    line-height: 1.4;
   }
 }
 
@@ -488,13 +605,22 @@ button:active {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 8px;
   
   p {
     font-size: 14px;
     font-weight: 600;
     
     &:first-child {
-      color: $accentColor;
+      color: $accentColorLight;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    &:last-child {
+      color: $tarkovTextDim;
+      font-size: 11px;
+      text-transform: uppercase;
     }
   }
 }
@@ -506,50 +632,69 @@ button:active {
   justify-content: center;
   
   svg {
-    padding-right: 4px;
+    padding-right: 6px;
     stroke: $accentColor;
   }
   
   p {
-    font-size: 13px;
+    font-size: 12px;
+    font-family: 'Roboto Mono', monospace;
     color: $accentColor;
+    font-weight: 500;
   }
 }
 
 .tooltip-ingredients {
-  padding-top: 8px;
+  padding-top: 12px;
 }
 
 .tooltip-ingredient {
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
+  padding: 4px;
+  background: rgba(2, 168, 219, 0.05);
+  border-radius: 3px;
+  border-left: 2px solid rgba(2, 168, 219, 0.3);
   
   img {
     width: 24px;
     height: 24px;
-    padding-right: 8px;
-    border-radius: 4px;
+    padding-right: 10px;
+    border-radius: 3px;
+    image-rendering: -webkit-optimize-contrast;
+  }
+  
+  p {
+    font-size: 11px;
+    font-weight: 500;
+    color: $tarkovTextDim;
   }
 }
 
-// hotbar
+// Hotbar - Tarkov Style
 .hotbar-container {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
   justify-content: center;
   width: 100%;
   position: absolute;
-  bottom: 3vh;
+  bottom: 4vh;
+  padding: 12px;
+  background: linear-gradient(145deg, rgba(26, 26, 26, 0.9), rgba(15, 15, 15, 0.9));
+  border-radius: 8px;
+  border: 1px solid rgba(2, 168, 219, 0.2);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 }
 
 .hotbar-item-slot {
   @extend .inventory-slot;
   width: $gridSize;
   height: $gridSize;
-  background-color: rgba(40, 40, 40, 0.9);
+  background: linear-gradient(145deg, rgba(42, 42, 42, 0.9), rgba(26, 26, 26, 0.9));
 }
 
 .hotbar-slot-header-wrapper {
@@ -558,14 +703,14 @@ button:active {
   justify-content: space-between;
 }
 
-// item notifications
+// Item Notifications - Tarkov Style
 .item-notification-container {
   display: flex;
   overflow-x: scroll;
   flex-wrap: nowrap;
-  gap: 4px;
+  gap: 6px;
   position: absolute;
-  bottom: 20vh;
+  bottom: 22vh;
   left: 50%;
   width: 100%;
   margin-left: calc(50% - calc($gridSize/2));
@@ -574,19 +719,20 @@ button:active {
 
 .item-notification-action-box {
   width: 100%;
-  color: $textColor;
+  color: #000;
   background: linear-gradient(135deg, $accentColor, $accentColorDark);
   text-transform: uppercase;
   text-align: center;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
   font-family: $mainFont;
   
   p {
-    font-size: 10px;
+    font-size: 9px;
     padding: 4px;
-    font-weight: 600;
+    font-weight: 700;
     color: #000;
+    letter-spacing: 0.5px;
   }
 }
 
@@ -594,33 +740,39 @@ button:active {
   @extend .inventory-slot;
   height: $gridSize;
   width: $gridSize;
-  background-color: rgba(40, 40, 40, 0.9);
+  background: linear-gradient(145deg, rgba(42, 42, 42, 0.95), rgba(26, 26, 26, 0.95));
+  border: 1px solid rgba(2, 168, 219, 0.4);
 }
 
+// Progress Bars - Tarkov Style
 .durability-bar {
-  background: rgba(0, 0, 0, 0.6);
-  height: 3px;
+  background: rgba(0, 0, 0, 0.7);
+  height: 4px;
   overflow: hidden;
   border-radius: 2px;
+  border: 1px solid rgba(2, 168, 219, 0.2);
+  margin: 2px 4px;
 }
 
 .weight-bar {
-  background: rgba(0, 0, 0, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(2, 168, 219, 0.2);
   height: 8px;
   border-radius: 4px;
   overflow: hidden;
+  margin-top: 8px;
 }
 
+// Transitions
 .transition-fade-enter {
   opacity: 0;
-  transform: scale(0.9);
+  transform: scale(0.95);
 }
 
 .transition-fade-enter-active {
   opacity: 1;
   transform: scale(1);
-  transition: all 300ms ease;
+  transition: all 250ms ease;
 }
 
 .transition-fade-exit {
@@ -630,19 +782,19 @@ button:active {
 
 .transition-fade-exit-active {
   opacity: 0;
-  transform: scale(0.9);
-  transition: all 300ms ease;
+  transform: scale(0.95);
+  transition: all 250ms ease;
 }
 
 .transition-slide-up-enter {
-  transform: translateY(100px);
+  transform: translateY(80px);
   opacity: 0;
 }
 
 .transition-slide-up-enter-active {
   transform: translateY(0px);
   opacity: 1;
-  transition: all 300ms ease;
+  transition: all 250ms ease;
 }
 
 .transition-slide-up-exit {
@@ -651,7 +803,7 @@ button:active {
 }
 
 .transition-slide-up-exit-active {
-  transform: translateY(100px);
+  transform: translateY(80px);
   opacity: 0;
-  transition: all 300ms ease;
+  transition: all 250ms ease;
 }
