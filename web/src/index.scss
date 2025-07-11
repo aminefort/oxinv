@@ -1,19 +1,17 @@
-$mainColor: #1a1a1a;
-$textColor: #ffffff;
+$mainColor: #22232c;
+$textColor: #c1c2c5;
 $mainFont: Roboto;
 
-$secondaryColor: rgba(30, 30, 30, 0.9);
-$secondaryColorHighlight: #2a2a2a;
-$secondaryColorLight: rgba(0, 0, 0, 0.7);
-$secondaryColorDark: rgba(15, 15, 15, 0.95);
-$accentColor: #00ff88;
-$accentColorDark: #00cc6a;
+$secondaryColor: rgba(12, 12, 12, 0.4);
+$secondaryColorHighlight: #33343F;
+$secondaryColorLight: rgba(0, 0, 0, 0.5);
+$secondaryColorDark: rgba(12, 12, 12, 0.8);
 
-$gridCols: 4;
-$gridRows: 3;
-$gridSize: 11vh;
-$gridGap: 8px;
-$containerSize: calc(#{$gridRows} * #{$gridSize + 0.5vh} + #{$gridRows} * #{$gridGap});
+$gridCols: 5;
+$gridRows: 5;
+$gridSize: 10.2vh;
+$gridGap: 2px;
+$containerSize: calc(#{$gridRows} * #{$gridSize + 0.22vh} + #{$gridRows} * #{$gridGap});
 
 body {
   margin: 0;
@@ -36,21 +34,7 @@ code {
 }
 
 ::-webkit-scrollbar {
-  width: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.3);
-  border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: $accentColor;
-  border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: $accentColorDark;
+  display: none;
 }
 
 p {
@@ -76,19 +60,19 @@ input[type='number']::-webkit-outer-spin-button {
   min-width: 200px;
   background-color: $mainColor;
   color: $textColor;
-  padding: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
+  padding: 4px;
+  border-color: rgba(0, 0, 0, 0.2);
+  border-style: inset;
+  border-width: 1px;
+  border-radius: 4px;
   outline: none;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(10px);
 }
 
-.context-menu-item {
-  padding: 12px 16px;
-  border-radius: 8px;
+.context-menu-item  {
+  padding: 8px;
+  border-radius: 4px;
   background-color: transparent;
   outline: none;
   border: none;
@@ -96,8 +80,6 @@ input[type='number']::-webkit-outer-spin-button {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 14px;
-  transition: all 0.2s ease;
   &:active {
     transform: none;
   }
@@ -108,7 +90,7 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 .tooltip-description {
-  padding-top: 8px;
+  padding-top: 5px;
 }
 
 .tooltip-markdown > p {
@@ -116,13 +98,13 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 button:active {
-  transform: translateY(1px);
+  transform: translateY(3px);
 }
 
 .item-drag-preview {
-  width: 8vh;
-  height: 8vh;
-  z-index: 1000;
+  width: 7.7vh;
+  height: 7.7vh;
+  z-index: 1;
   position: fixed;
   pointer-events: none;
   top: 0;
@@ -131,69 +113,59 @@ button:active {
   background-position: center;
   background-size: 7vh;
   image-rendering: -webkit-optimize-contrast;
-  border-radius: 12px;
-  border: 2px solid $accentColor;
 }
 
 .inventory-wrapper {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   height: 100%;
-  gap: 24px;
-  padding: 20px;
+
+  gap: 20px;
 }
 
 .inventory-control {
   display: flex;
-  order: 3;
 
   .inventory-control-wrapper {
     display: flex;
-    flex-direction: row;
-    gap: 16px;
+    flex-direction: column;
+    gap: 20px;
     justify-content: center;
     align-items: center;
   }
 
   .inventory-control-input {
-    transition: all 0.3s ease;
-    padding: 12px 16px;
-    border-radius: 12px;
+    transition: 200ms;
+    padding: 16px 8px;
+    border-radius: 2.5%;
     font-family: $mainFont;
-    font-size: 14px;
+    font-size: 16px;
     text-align: center;
     outline: none;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: none;
     color: #fff;
     background-color: $secondaryColor;
-    backdrop-filter: blur(10px);
-    width: 80px;
     &:focus-within {
       background-color: $secondaryColorDark;
-      border-color: $accentColor;
-      box-shadow: 0 0 0 2px rgba(0, 255, 136, 0.2);
     }
   }
 
   .inventory-control-button {
-    font-size: 13px;
+    font-size: 14px;
     color: #fff;
     background-color: $secondaryColor;
-    transition: all 0.3s ease;
-    padding: 12px 20px;
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: 200ms;
+    padding: 12px 8px;
+    border-radius: 2.5%;
+    border: none;
     text-transform: uppercase;
     font-family: $mainFont;
+    width: 100%;
     font-weight: 500;
-    letter-spacing: 0.5px;
-    backdrop-filter: blur(10px);
     &:hover {
       background-color: $secondaryColorDark;
-      border-color: $accentColor;
-      box-shadow: 0 4px 16px rgba(0, 255, 136, 0.2);
     }
   }
 }
@@ -208,17 +180,13 @@ button:active {
   width: 450px;
   display: flex;
   flex-direction: column;
-  padding: 24px;
-  border-radius: 16px;
-  gap: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 16px 64px rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(20px);
+  padding: 16px;
+  border-radius: 4px;
+  gap: 16px;
 }
 
 .useful-controls-dialog-overlay {
-  background-color: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(4px);
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .useful-controls-dialog-title {
@@ -227,19 +195,17 @@ button:active {
   justify-content: space-between;
   align-items: center;
   font-size: 18px;
-  font-weight: 600;
 }
 
 .useful-controls-dialog-close {
-  width: 32px;
-  height: 32px;
-  padding: 8px;
+  width: 25px;
+  height: 25px;
+  padding: 6px;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 8px;
+  border-radius: 4px;
   fill: $textColor;
-  transition: all 0.2s ease;
   &:hover {
     background-color: $secondaryColorHighlight;
     cursor: pointer;
@@ -249,84 +215,59 @@ button:active {
 .useful-controls-content-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;
 }
 
 .divider {
   width: 100%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  background-color: rgba(255, 255, 255, 0.12);
 }
 
 .useful-controls-button {
   position: absolute !important;
-  bottom: 30px;
-  right: 30px;
-  transition: all 0.3s ease !important;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  bottom: 25px;
+  right: 25px;
+  transition: 200ms !important;
+  border: none;
   color: white;
-  width: 56px;
-  height: 56px;
+  width: 52px;
+  height: 52px;
   display: flex;
   justify-content: center;
   align-items: center;
   fill: white;
-  border-radius: 16px !important;
+  border-radius: 5% !important;
   background-color: $secondaryColor !important;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
   &:hover {
     background-color: $secondaryColorDark !important;
-    border-color: $accentColor;
-    box-shadow: 0 8px 32px rgba(0, 255, 136, 0.2);
     cursor: pointer;
-    transform: translateY(-2px);
   }
 }
+
+.useful-controls-exit-button {
+  position: absolute !important;
+  right: 8px;
+  top: 8px;
+  border-radius: 2.5% !important;
+  color: grey !important;
+}
+
+// Dialog is used fro useful controls window
+
 
 // inventory grids
 .inventory-grid-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  background-color: $secondaryColor;
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
-  padding: 20px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-  position: relative;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 4px;
-    height: 100%;
-    background: linear-gradient(180deg, $accentColor, transparent);
-    border-top-right-radius: 16px;
-    border-bottom-right-radius: 16px;
-  }
+  gap: calc($gridGap * 2);
 }
-
 .inventory-grid-header-wrapper {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 8px;
-  
   p {
     font-size: 16px;
-    font-weight: 600;
-    color: $textColor;
-    
-    &:first-child {
-      color: $accentColor;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
   }
 }
 
@@ -334,41 +275,35 @@ button:active {
   display: grid;
   height: $containerSize;
   grid-template-columns: repeat($gridCols, $gridSize);
-  grid-auto-rows: $gridSize;
+  grid-auto-rows: $gridSize + 0.22vh;
   gap: $gridGap;
-  overflow-y: auto;
-  padding-right: 4px;
+  overflow-y: scroll;
 }
 
 // inventory slots
 .inventory-slot {
-  background-color: rgba(20, 20, 20, 0.8);
+  background-color: $secondaryColor;
   background-repeat: no-repeat;
   background-position: center;
-  border-radius: 12px;
+  border-radius: 2.5%;
   image-rendering: -webkit-optimize-contrast;
   position: relative;
   background-size: 7vh;
   color: $textColor;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
-  
-  &:hover {
-    border-color: rgba(0, 255, 136, 0.5);
-    box-shadow: 0 4px 16px rgba(0, 255, 136, 0.1);
-    transform: translateY(-2px);
-  }
+  border-color: rgba(0, 0, 0, 0.2);
+  border-style: inset;
+  border-width: 1px;
 }
 
 .inventory-slot-label-box {
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6));
+  background-color: $mainColor;
   color: $textColor;
   text-align: center;
-  border-bottom-left-radius: 12px;
-  border-bottom-right-radius: 12px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
+  border-bottom-left-radius: 0.25vh;
+  border-bottom-right-radius: 0.25vh;
+  border-top-color: rgba(0, 0, 0, 0.2);
+  border-top-style: inset;
+  border-top-width: 1px;
 }
 
 .inventory-slot-label-text {
@@ -376,27 +311,21 @@ button:active {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  padding: 6px 8px;
-  font-weight: 500;
+  padding: 2px 3px;
+  font-weight: 400;
   font-family: $mainFont;
-  font-size: 11px;
-  letter-spacing: 0.5px;
+  font-size: 12px;
 }
 
 .inventory-slot-number {
-  background: linear-gradient(135deg, $accentColor, $accentColorDark);
+  background-color: white;
   color: black;
-  height: 16px;
-  width: 16px;
-  border-top-left-radius: 12px;
-  border-bottom-right-radius: 8px;
-  padding: 4px;
-  font-size: 11px;
+  height: 12px;
+  border-top-left-radius: 0.25vh;
+  border-bottom-right-radius: 0.25vh;
+  padding: 3px;
+  font-size: 12px;
   font-family: $mainFont;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .item-slot-wrapper {
@@ -405,8 +334,7 @@ button:active {
   justify-content: space-between;
   height: 100%;
   p {
-    font-size: 11px;
-    font-weight: 500;
+    font-size: 12px;
   }
 }
 
@@ -425,12 +353,10 @@ button:active {
   display: flex;
   flex-direction: row;
   align-self: flex-end;
-  padding: 6px;
-  gap: 4px;
+  padding: 3px;
+  gap: 3px;
   p {
-    font-size: 11px;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
-    font-weight: 600;
+    font-size: 12px;
   }
 }
 
@@ -439,12 +365,10 @@ button:active {
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
-  padding-right: 6px;
+  padding-right: 3px;
   p {
-    font-size: 12px;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
-    font-weight: 600;
-    color: $accentColor;
+    font-size: 14px;
+    text-shadow: 0.1vh 0.1vh 0 rgba(0, 0, 0, 0.7);
   }
 }
 
@@ -452,28 +376,28 @@ button:active {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  padding-right: 6px;
+  padding-right: 3px;
   p {
-    font-size: 12px;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
-    font-weight: 600;
+    font-size: 14px;
+    text-shadow: 0.1vh 0.1vh 0 rgba(0, 0, 0, 0.7);
   }
 }
+
 
 .tooltip-wrapper {
   pointer-events: none;
   display: flex;
-  background: linear-gradient(135deg, rgba(26, 26, 26, 0.95), rgba(20, 20, 20, 0.95));
-  width: 220px;
-  padding: 16px;
+  background-color: $mainColor;
+  width: 200px;
+  padding: 8px;
   flex-direction: column;
-  min-width: 220px;
+  min-width: 200px;
   color: $textColor;
   font-family: $mainFont;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+  border-color: rgba(0, 0, 0, 0.2);
+  border-style: inset;
+  border-width: 1px;
   p {
     font-size: 12px;
     font-weight: 400;
@@ -486,12 +410,8 @@ button:active {
   justify-content: space-between;
   align-items: center;
   p {
-    font-size: 14px;
-    font-weight: 600;
-    
-    &:first-child {
-      color: $accentColor;
-    }
+    font-size: 15px;
+    font-weight: 400;
   }
 }
 
@@ -500,30 +420,26 @@ button:active {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  color: $accentColor;
   svg {
-    padding-right: 4px;
+    padding-right: 3px;
   }
   p {
-    font-size: 13px;
-    font-weight: 500;
+    font-size: 14px;
   }
 }
 
 .tooltip-ingredients {
-  padding-top: 8px;
+  padding-top: 5px;
 }
 
 .tooltip-ingredient {
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-bottom: 4px;
   img {
-    width: 24px;
-    height: 24px;
-    padding-right: 8px;
-    border-radius: 4px;
+    width: 28px;
+    height: 28px;
+    padding-right: 5px;
   }
 }
 
@@ -531,18 +447,17 @@ button:active {
 .hotbar-container {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 2px;
   justify-content: center;
   width: 100%;
   position: absolute;
-  bottom: 3vh;
+  bottom: 2vh;
 }
 
 .hotbar-item-slot {
   @extend .inventory-slot;
   width: $gridSize;
   height: $gridSize;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
 }
 
 .hotbar-slot-header-wrapper {
@@ -552,13 +467,14 @@ button:active {
 }
 
 // item notifications
+
 .item-notification-container {
   display: flex;
   overflow-x: scroll;
   flex-wrap: nowrap;
-  gap: 6px;
+  gap: 2px;
   position: absolute;
-  bottom: 22vh;
+  bottom: 20vh;
   left: 50%;
   width: 100%;
   margin-left: calc(50% - calc($gridSize/2));
@@ -568,17 +484,16 @@ button:active {
 .item-notification-action-box {
   width: 100%;
   color: $textColor;
-  background: linear-gradient(135deg, $accentColor, $accentColorDark);
+  background-color: $secondaryColor;
   text-transform: uppercase;
   text-align: center;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
+  border-top-left-radius: 0.25vh;
+  border-top-right-radius: 0.25vh;
   font-family: $mainFont;
   p {
-    font-size: 10px;
-    padding: 4px;
-    font-weight: 700;
-    color: black;
+    font-size: 11px;
+    padding: 2px;
+    font-weight: 600;
   }
 }
 
@@ -589,97 +504,51 @@ button:active {
 }
 
 .durability-bar {
-  background: rgba(0, 0, 0, 0.6);
-  height: 4px;
+  background: rgba(0, 0, 0, 0.5);
+  height: 3px;
   overflow: hidden;
-  border-radius: 2px;
-  margin: 2px 4px;
 }
 
 .weight-bar {
-  background: rgba(0, 0, 0, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  height: 6px;
-  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px inset rgba(0, 0, 0, 0.1);
+  height: 0.8vh;
+  border-radius: 5%;
   overflow: hidden;
-  margin-top: 4px;
 }
 
 .transition-fade-enter {
   opacity: 0;
-  transform: scale(0.9);
 }
 
 .transition-fade-enter-active {
   opacity: 1;
-  transform: scale(1);
-  transition: all 300ms ease;
+  transition: opacity 200ms;
 }
 
 .transition-fade-exit {
   opacity: 1;
-  transform: scale(1);
 }
 
 .transition-fade-exit-active {
   opacity: 0;
-  transform: scale(0.9);
-  transition: all 300ms ease;
+  transition: opacity 200ms;
 }
 
 .transition-slide-up-enter {
-  transform: translateY(100px);
-  opacity: 0;
+  transform: translateY(200px)
 }
 
 .transition-slide-up-enter-active {
   transform: translateY(0px);
-  opacity: 1;
-  transition: all 300ms ease;
+  transition: all 200ms;
 }
 
 .transition-slide-up-exit {
   transform: translateY(0px);
-  opacity: 1;
 }
 
 .transition-slide-up-exit-active {
-  transform: translateY(100px);
-  opacity: 0;
-  transition: all 300ms ease;
-}
-
-// Custom scrollbar for webkit browsers
-* {
-  scrollbar-width: thin;
-  scrollbar-color: $accentColor rgba(0, 0, 0, 0.3);
-}
-
-// Responsive design
-@media (max-width: 1200px) {
-  $gridSize: 9vh;
-  
-  .inventory-grid-container {
-    grid-template-columns: repeat($gridCols, $gridSize);
-    grid-auto-rows: $gridSize;
-  }
-  
-  .hotbar-item-slot {
-    width: $gridSize;
-    height: $gridSize;
-  }
-}
-
-// Keyboard shortcuts styling
-kbd {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 6px;
-  padding: 4px 8px;
-  font-family: monospace;
-  font-size: 11px;
-  font-weight: 600;
-  color: $accentColor;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  transform: translateY(200px);
+  transition: all 200ms;
 }
